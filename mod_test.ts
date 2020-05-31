@@ -1,10 +1,9 @@
-import { test, runIfMain } from "https://deno.land/std@v0.6/testing/mod.ts";
 import {
   assertEquals,
   assert
-} from "https://deno.land/std@v0.6/testing/asserts.ts";
-import { exists } from "https://deno.land/std@v0.6/fs/exists.ts";
-import { join } from "https://deno.land/std@v0.6/fs/path/mod.ts";
+} from "https://deno.land/std@v1.1/testing/asserts.ts";
+import { exists } from "https://deno.land/std@v1.1/fs/exists.ts";
+import { join } from "https://deno.land/std@v1.1/path/mod.ts";
 
 import { path } from "./mod.ts";
 
@@ -24,7 +23,7 @@ async function wipeTestEnv(): Promise<void> {
   await setupTestEnv();
 }
 
-test({
+Deno.test({
   name: "ls",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -59,7 +58,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Exec",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -74,7 +73,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Join",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -91,7 +90,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Touch Sync",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -104,7 +103,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Touch Async",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -117,7 +116,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "MkDir Sync",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -130,7 +129,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "MkDir Async",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -143,7 +142,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Proxy properties",
   async fn(): Promise<void> {
     const actual = path("/").is.where.the.tree.iz.toString();
@@ -158,7 +157,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "isDirectory()",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -176,7 +175,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "isFile()",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -194,7 +193,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Copy",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -218,7 +217,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Copy Chain",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -239,7 +238,7 @@ test({
   }
 });
 
-test({
+Deno.test({
   name: "Copy Async",
   async fn(): Promise<void> {
     await setupTestEnv();
@@ -264,7 +263,7 @@ test({
 });
 
 if (isNotWindows) {
-  test({
+  Deno.test({
     name: "chmod",
     async fn(): Promise<void> {
       await setupTestEnv();
@@ -308,5 +307,3 @@ if (isNotWindows) {
     }
   });
 }
-
-runIfMain(import.meta);
